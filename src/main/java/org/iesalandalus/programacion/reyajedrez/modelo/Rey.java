@@ -8,6 +8,7 @@ public class Rey {
 	private Posicion posicion;
 	private Direccion direccion;
 	private int totalMovimientos;
+	private int numpasos;
 	
 	
 	public Color getColor() {
@@ -46,131 +47,179 @@ public class Rey {
 		setPosicion(new Posicion(8,'e'));
 	}
 	
-	public int getTotalMovimientos() {
-		return(totalMovimientos);
-	}
 	
-	public void mover(Direccion direccion){
+	public void mover(Direccion direccion,int numpasos) throws OperationNotSupportedException{
 
 		
 		if (direccion==null) {
 			throw new NullPointerException("ERROR: No se puede establecer una direccion vacia");	
-		}else
+		}else {
 		
-		Try {
 		
 			if (direccion.equals(Direccion.NORTE)) {
-				int f;
+				try {
+					int f;
+					
+					f=posicion.getFila();
+					posicion.setFila(f+numpasos);
+					totalMovimientos++;
 				
-				f=posicion.getFila();
-				posicion.setFila(f+1);
-				totalMovimientos++;	
+				} catch (IllegalArgumentException e) {
+					throw new OperationNotSupportedException("Movimiento no válido: " + e.getMessage());
+				}
 			}
+			
 		
 		
 			if (direccion.equals(Direccion.NORESTE)) {
-				
-				int f;
-				char c1;
-				int c2=0;
-				
-				f=posicion.getFila();
-				posicion.setFila(f+1);
-				
-				c1=posicion.getColumna();
-				c2=c1+1;
-				posicion.setColumna((char)c2);
-				
-				totalMovimientos++;	
+			 try {	
+					int f;
+					char c1;
+					int c2=0;
+					
+					f=posicion.getFila();
+					posicion.setFila(f+numpasos);
+					
+					c1=posicion.getColumna();
+					c2=c1+numpasos;
+					posicion.setColumna((char)c2);
+					
+					totalMovimientos++;	
+			} catch (IllegalArgumentException e) {
+				throw new OperationNotSupportedException("Movimiento no válido: " + e.getMessage());
+				}
 			}
 		
+			
 			if (direccion.equals(Direccion.NOROESTE)) {
-				int f;
-				char c1;
-				int c2=0;
+			 try {
+					int f;
+					char c1;
+					int c2=0;
+					
+					f=posicion.getFila();
+					posicion.setFila(f+numpasos);
+					
+					c1=posicion.getColumna();
+					c2=c1-numpasos;
+					posicion.setColumna((char)c2);
+					
+					totalMovimientos++;	
 				
-				f=posicion.getFila();
-				posicion.setFila(f+1);
-				
-				c1=posicion.getColumna();
-				c2=c1-1;
-				posicion.setColumna((char)c2);
-				
-				totalMovimientos++;	
+			} catch (IllegalArgumentException e) {
+				throw new OperationNotSupportedException("Movimiento no válido: " + e.getMessage());
+				}	 
 			}
 		
+			
+			
 			if (direccion.equals(Direccion.SUR)) {
-				int f;
-				
-				f=posicion.getFila();
-				posicion.setFila(f-1);
-				
-				totalMovimientos++;	
+			 try {
+					int f;
+					
+					f=posicion.getFila();
+					posicion.setFila(f-numpasos);
+					
+					totalMovimientos++;	
+			} catch (IllegalArgumentException e) {
+				throw new OperationNotSupportedException("Movimiento no válido: " + e.getMessage());
+				}
 			}
 		
+			
 			if (direccion.equals(Direccion.SURESTE)) {
-				int f;
-				char c1;
-				int c2=0;
-				
-				f=posicion.getFila();
-				posicion.setFila(f-1);
-				
-				c1=posicion.getColumna();
-				c2=c1+1;
-				posicion.setColumna((char)c2);
-				
-				totalMovimientos++;	
+			 try {
+					int f;
+					char c1;
+					int c2=0;
+					
+					f=posicion.getFila();
+					posicion.setFila(f-numpasos);
+					
+					c1=posicion.getColumna();
+					c2=c1+numpasos;
+					posicion.setColumna((char)c2);
+					
+					totalMovimientos++;	
+			} catch (IllegalArgumentException e) {
+				throw new OperationNotSupportedException("Movimiento no válido: " + e.getMessage());
+				}
 			}
+			
 		
 			if (direccion.equals(Direccion.SUROESTE)) {
-				int f;
-				char c1;
-				int c2=0;
-				
-				f=posicion.getFila();
-				posicion.setFila(f-1);
-				
-				c1=posicion.getColumna();
-				c2=c1-1;
-				posicion.setColumna((char)c2);
-				
-				totalMovimientos++;	
+			 try {
+					int f;
+					char c1;
+					int c2=0;
+					
+					f=posicion.getFila();
+					posicion.setFila(f-numpasos);
+					
+					c1=posicion.getColumna();
+					c2=c1-numpasos;
+					posicion.setColumna((char)c2);
+					
+					totalMovimientos++;	
+			} catch (IllegalArgumentException e) {
+				throw new OperationNotSupportedException("Movimiento no válido: " + e.getMessage());
+				}
 			}
 		
+			
 			if (direccion.equals(Direccion.ESTE)) {
-	
+			 try {
 				char c1;
 				int c2=0;
 	
 				c1=posicion.getColumna();
-				c2=c1+1;
+				c2=c1+numpasos;
 				posicion.setColumna((char)c2);
 				
 				totalMovimientos++;	
+			} catch (IllegalArgumentException e) {
+				throw new OperationNotSupportedException("Movimiento no válido: " + e.getMessage());
+				}
 			}
 		
+			
 			if (direccion.equals(Direccion.OESTE)) {
-	
+			 try {
 				char c1;
 				int c2=0;
 	
 				c1=posicion.getColumna();
-				c2=c1+1;
+				c2=c1+numpasos;
 				posicion.setColumna((char)c2);
 				
 				totalMovimientos++;	
+			} catch (IllegalArgumentException e) {
+				throw new OperationNotSupportedException("Movimiento no válido: " + e.getMessage());
+				}
 			}
 		
+			
 			if (direccion.equals(Direccion.ENROQUE_CORTO)) {
-				posicion.setColumna('h');
-				totalMovimientos++;
+			 try {
+					posicion.setColumna('h');
+					totalMovimientos++;
+			 } catch (IllegalArgumentException e) {
+				throw new OperationNotSupportedException("Movimiento no válido: " + e.getMessage());
+			 	}
 			}
+			
+			
 			if (direccion.equals(Direccion.ENROQUE_LARGO)) {
+			 try {
 				posicion.setColumna('a');
 				totalMovimientos++;
-			}	
+			} catch (IllegalArgumentException e) {
+				throw new OperationNotSupportedException("Movimiento no válido: " + e.getMessage());
+				}
+			}
+		 }
 	}
+		
 	
 	private void comprobarEnroque() {
 		boolean comproEnroque=false;
