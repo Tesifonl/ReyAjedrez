@@ -15,10 +15,16 @@ public class MainApp {
 	private static Direccion direccion;
 
 	
-	public static void ejecutarOpcion(int opcion) {	
-		Consola.mostrarMenu();
-		Consola.elegirOpcionMenu();	
-	}
+	public static void ejecutarOpcion(int opcion) throws OperationNotSupportedException {	
+
+    	switch (opcion) {
+		
+		case (1):{crearReyDefecto();break;}
+		case (2):{crearReyColor();break;}
+		case (3):{mover();break;}
+		case (0):{System.out.println (" Salir ");break;}
+    	}
+	}	
 	
 	public static void crearReyDefecto() {
 		
@@ -80,17 +86,11 @@ public class MainApp {
 
     public static void main(String[] args) throws OperationNotSupportedException {
     	
-    	int opcion=0;
-    	
-    	do {ejecutarOpcion(opcion);
-		
-    	switch (opcion) {
-		
-		case (1):{crearReyDefecto();break;}
-		case (2):{crearReyColor();break;}
-		case (3):{mover();break;}
-		case (0):{System.out.println (" Salir ");break;}
-    
-    	}}while (opcion!=0);
-    }
-}
+    	int opcion;
+    	do { 
+    		Consola.mostrarMenu();
+    		opcion=Consola.elegirOpcionMenu();
+    		ejecutarOpcion(opcion);
+    	}while (opcion!=0);
+    	}
+	}
