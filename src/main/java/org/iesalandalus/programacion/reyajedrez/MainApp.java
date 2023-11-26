@@ -7,8 +7,6 @@ import org.iesalandalus.programacion.reyajedrez.modelo.Direccion;
 import org.iesalandalus.programacion.reyajedrez.modelo.Rey;
 import org.iesalandalus.programacion.utilidades.Entrada;
 
-import src.poo.IllegalArgumentException;
-import src.poo.NullPointerException;
 
 public class MainApp {
 	
@@ -53,7 +51,7 @@ public class MainApp {
         }
 	}
 	
-	public static void mover () {
+	public static void mover () throws OperationNotSupportedException {
 		
 	
 			int pasos;
@@ -80,16 +78,19 @@ public class MainApp {
 		}
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws OperationNotSupportedException {
+    	
+    	int opcion=0;
+    	
+    	do {ejecutarOpcion(opcion);
 		
     	switch (opcion) {
 		
-		case (1):{rey=new Rey();break;}
-		case (2):{rey=new Rey(color);break;}
-		case (3):{rey.mover(direccion);break;}
-		case (0): {System.out.println (" Salir ");break;}
+		case (1):{crearReyDefecto();break;}
+		case (2):{crearReyColor();break;}
+		case (3):{mover();break;}
+		case (0):{System.out.println (" Salir ");break;}
     
-    	
-    	}
- 
+    	}}while (opcion!=0);
     }
+}
