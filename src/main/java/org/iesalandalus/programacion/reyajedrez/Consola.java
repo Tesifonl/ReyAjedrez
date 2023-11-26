@@ -91,7 +91,7 @@ public class Consola {
         {
             System.out.println("Introduzca la direccion del rey ");
             direccionado=Entrada.entero();       
-        }while (direccionado<1 || direccionado>2);
+        }while (direccionado<1 || direccionado>10);
         
         switch (direccionado)
         {

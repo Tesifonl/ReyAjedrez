@@ -29,11 +29,11 @@ public class MainApp {
 	public static void crearReyDefecto() {
 		
 		 try {
+			 String resumen;
 			 rey=new Rey();
 	         System.out.println("Rey creado correctamente");
-	         System.out.println("-------------------------------");
-	         System.out.println("");
-	         System.out.println("");
+	         resumen=rey.toString();
+	         System.out.println(resumen);
 	        }
 	        catch(NullPointerException e)
 	        {
@@ -43,6 +43,7 @@ public class MainApp {
 	
 	public static void crearReyColor() {
 		try {
+			String resumen;
 			Color colorElegido=Consola.elegirColor();/*INTERESANTE REVISAR COMO ASIGNAR UN ENUN
 			A UNA VARIABLE OBJETO PARA DESPUES UTILIZARLA*/
 			rey=new Rey(colorElegido);
@@ -50,6 +51,8 @@ public class MainApp {
 	        System.out.println("-------------------------------");
 	        System.out.println("");
 	        System.out.println("");
+	         resumen=rey.toString();
+	         System.out.println(resumen);
 	        }
         catch( NullPointerException e)
         {
@@ -62,7 +65,7 @@ public class MainApp {
 	
 			int pasos;
 
-			Consola.mostrarMenu();
+			Consola.mostrarMenuDirecciones();;
 			Direccion direccionElegida=Consola.elegirDireccion();/*INTERESANTE REVISAR COMO ASIGNAR UN ENUN
 			A UNA VARIABLE OBJETO PARA DESPUES UTILIZARLA*/
 			System.out.println("Introduce el numero de pasos a mover");
@@ -70,6 +73,10 @@ public class MainApp {
 			
 			try {
 			rey.mover(direccionElegida, pasos);
+	        System.out.println("Movimiento realizado correctamente");
+	        System.out.println("-------------------------------");
+	        System.out.println("");
+	        System.out.println("");
 			} catch (IllegalArgumentException e) {
 				throw new OperationNotSupportedException("Movimiento no válido: " + e.getMessage());
 			}
