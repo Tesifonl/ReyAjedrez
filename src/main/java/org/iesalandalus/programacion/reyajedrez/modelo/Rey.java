@@ -8,7 +8,7 @@ public class Rey {
 	private Posicion posicion;
 	private Direccion direccion;
 	private int totalMovimientos;
-	private int numpasos;
+
 	
 	
 	public Color getColor() {
@@ -17,7 +17,7 @@ public class Rey {
 	
 	public void setColor(Color color) {
 		if(color==null) {
-			throw new NullPointerException("ERROR: No se puede establecer un color vacio");
+			throw new NullPointerException("ERROR: El color no puede ser nulo.");
 		}
 		this.color = color;
 	}
@@ -48,187 +48,177 @@ public class Rey {
 	}
 	
 	
-	public void mover(Direccion direccion,int numpasos) throws OperationNotSupportedException{
-
+	public void mover(Direccion direccion) throws OperationNotSupportedException{
+		
 		
 		if (direccion==null) {
-			throw new NullPointerException("ERROR: No se puede establecer una direccion vacia");	
+			throw new NullPointerException("ERROR: La dirección no puede ser nula.");	
 		}else {
 		
-		
-			if (direccion.equals(Direccion.NORTE)) {
-				try {
-					int f;
-					
-					f=posicion.getFila();
-					posicion.setFila(f+numpasos);
-					totalMovimientos++;
-				
+		if (direccion.equals(Direccion.NORTE)) {
+			try {
+				int f;
+				f=posicion.getFila();
+				posicion.setFila(f+1);
+				totalMovimientos++;
 				} catch (IllegalArgumentException e) {
 					throw new OperationNotSupportedException("Movimiento no válido: " + e.getMessage());
 				}
 			}
 			
-		
-		
-			if (direccion.equals(Direccion.NORESTE)) {
+		if (direccion.equals(Direccion.NORESTE)) {
 			 try {	
-					int f;
-					char c1;
-					int c2=0;
-					
-					f=posicion.getFila();
-					posicion.setFila(f+numpasos);
-					
-					c1=posicion.getColumna();
-					c2=c1+numpasos;
-					posicion.setColumna((char)c2);
-					
-					totalMovimientos++;	
-			} catch (IllegalArgumentException e) {
-				throw new OperationNotSupportedException("Movimiento no válido: " + e.getMessage());
-				}
-			}
-		
-			
-			if (direccion.equals(Direccion.NOROESTE)) {
-			 try {
-					int f;
-					char c1;
-					int c2=0;
-					
-					f=posicion.getFila();
-					posicion.setFila(f+numpasos);
-					
-					c1=posicion.getColumna();
-					c2=c1-numpasos;
-					posicion.setColumna((char)c2);
-					
-					totalMovimientos++;	
-				
-			} catch (IllegalArgumentException e) {
-				throw new OperationNotSupportedException("Movimiento no válido: " + e.getMessage());
-				}	 
-			}
-		
-			
-			
-			if (direccion.equals(Direccion.SUR)) {
-			 try {
-					int f;
-					
-					f=posicion.getFila();
-					posicion.setFila(f-numpasos);
-					
-					totalMovimientos++;	
-			} catch (IllegalArgumentException e) {
-				throw new OperationNotSupportedException("Movimiento no válido: " + e.getMessage());
-				}
-			}
-		
-			
-			if (direccion.equals(Direccion.SURESTE)) {
-			 try {
-					int f;
-					char c1;
-					int c2=0;
-					
-					f=posicion.getFila();
-					posicion.setFila(f-numpasos);
-					
-					c1=posicion.getColumna();
-					c2=c1+numpasos;
-					posicion.setColumna((char)c2);
-					
-					totalMovimientos++;	
-			} catch (IllegalArgumentException e) {
-				throw new OperationNotSupportedException("Movimiento no válido: " + e.getMessage());
-				}
-			}
-			
-		
-			if (direccion.equals(Direccion.SUROESTE)) {
-			 try {
-					int f;
-					char c1;
-					int c2=0;
-					
-					f=posicion.getFila();
-					posicion.setFila(f-numpasos);
-					
-					c1=posicion.getColumna();
-					c2=c1-numpasos;
-					posicion.setColumna((char)c2);
-					
-					totalMovimientos++;	
-			} catch (IllegalArgumentException e) {
-				throw new OperationNotSupportedException("Movimiento no válido: " + e.getMessage());
-				}
-			}
-		
-			
-			if (direccion.equals(Direccion.ESTE)) {
-			 try {
+				int f;
 				char c1;
 				int c2=0;
-	
+					
+				f=posicion.getFila();
+				posicion.setFila(f+1);	
 				c1=posicion.getColumna();
-				c2=c1+numpasos;
+				c2=c1+1;
 				posicion.setColumna((char)c2);
-				
-				totalMovimientos++;	
-			} catch (IllegalArgumentException e) {
-				throw new OperationNotSupportedException("Movimiento no válido: " + e.getMessage());
-				}
-			}
-		
-			
-			if (direccion.equals(Direccion.OESTE)) {
-			 try {
-				char c1;
-				int c2=0;
-	
-				c1=posicion.getColumna();
-				c2=c1+numpasos;
-				posicion.setColumna((char)c2);
-				
-				totalMovimientos++;	
-			} catch (IllegalArgumentException e) {
-				throw new OperationNotSupportedException("Movimiento no válido: " + e.getMessage());
-				}
-			}
-		
-			
-			if (direccion.equals(Direccion.ENROQUE_CORTO)) {
-			 try {
-					posicion.setColumna('h');
-					totalMovimientos++;
-			 } catch (IllegalArgumentException e) {
-				throw new OperationNotSupportedException("Movimiento no válido: " + e.getMessage());
-			 	}
-			}
-			
-			
-			if (direccion.equals(Direccion.ENROQUE_LARGO)) {
-			 try {
-				posicion.setColumna('a');
 				totalMovimientos++;
 			} catch (IllegalArgumentException e) {
 				throw new OperationNotSupportedException("Movimiento no válido: " + e.getMessage());
 				}
 			}
-		 }
-	}
 		
+		if (direccion.equals(Direccion.NOROESTE)) {
+			 try {
+				int f;
+				char c1;
+				int c2=0;
+					
+				f=posicion.getFila();
+				posicion.setFila(f+1);
+				c1=posicion.getColumna();
+				c2=c1-1;
+				posicion.setColumna((char)c2);	
+				totalMovimientos++;
+			} catch (IllegalArgumentException e) {
+				throw new OperationNotSupportedException("Movimiento no válido: " + e.getMessage());
+				}	 
+			}
+		
+		
+		if (direccion.equals(Direccion.SUR)) {
+			 try {
+				int f;
+					
+				f=posicion.getFila();
+				posicion.setFila(f-1);
+				totalMovimientos++;
+			} catch (IllegalArgumentException e) {
+				throw new OperationNotSupportedException("Movimiento no válido: " + e.getMessage());
+				}
+			}
+		
+			
+		if (direccion.equals(Direccion.SURESTE)) {
+			 try {
+				int f;
+				char c1;
+				int c2=0;
+					
+				f=posicion.getFila();
+				posicion.setFila(f-1);	
+				c1=posicion.getColumna();
+				c2=c1+1;
+				posicion.setColumna((char)c2);
+				totalMovimientos++;
+			} catch (IllegalArgumentException e) {
+				throw new OperationNotSupportedException("Movimiento no válido: " + e.getMessage());
+				}
+			}
+			
+		
+		if (direccion.equals(Direccion.SUROESTE)) {
+			 try {
+				int f;
+				char c1;
+				int c2=0;
+					
+				f=posicion.getFila();
+				posicion.setFila(f-1);		
+				c1=posicion.getColumna();
+				c2=c1-1;
+				posicion.setColumna((char)c2);
+				totalMovimientos++;
+			} catch (IllegalArgumentException e) {
+				throw new OperationNotSupportedException("Movimiento no válido: " + e.getMessage());
+				}
+			}
+		
+			
+		if (direccion.equals(Direccion.ESTE)) {
+			 try {
+				char c1;
+				int c2=0;
 	
-	private void comprobarEnroque() {
+				c1=posicion.getColumna();
+				c2=c1+1;
+				posicion.setColumna((char)c2);
+				totalMovimientos++;
+			} catch (IllegalArgumentException e) {
+				throw new OperationNotSupportedException("Movimiento no válido: " + e.getMessage());
+				}
+			}
+		
+			
+		if (direccion.equals(Direccion.OESTE)) {
+			 try {
+				char c1;
+				int c2=0;
+	
+				c1=posicion.getColumna();
+				c2=c1+1;
+				posicion.setColumna((char)c2);
+				totalMovimientos++;
+			} catch (IllegalArgumentException e) {
+				throw new OperationNotSupportedException("Movimiento no válido: " + e.getMessage());
+				}
+			}
+		
+			
+		if (direccion.equals(Direccion.ENROQUE_CORTO)) {
+			
+			if (posicion.getFila()==1 && posicion.getColumna()=='e' ||
+					posicion.getFila()==8 && posicion.getColumna()=='e' ) {
+						if (totalMovimientos==0) {
+							posicion.setColumna('h');}else 
+									{throw new OperationNotSupportedException("ERROR: El rey ya se ha movido antes.");}
+				}throw new OperationNotSupportedException("ERROR: El rey no está en su posición inicial.");
+		}
+		
+			
+			
+		if (direccion.equals(Direccion.ENROQUE_LARGO)) {
+			if (posicion.getFila()==1 && posicion.getColumna()=='e' ||
+					posicion.getFila()==8 && posicion.getColumna()=='e' ) {
+						if (totalMovimientos==0) {
+							posicion.setColumna('a');}else 
+									{throw new OperationNotSupportedException("ERROR: El rey ya se ha movido antes.");}
+				}throw new OperationNotSupportedException("ERROR: El rey no está en su posición inicial.");
+			}
+		}
+	}
+
+	
+	
+	private void comprobarEnroque() throws OperationNotSupportedException {
 		boolean comproEnroque=false;
-		if (totalMovimientos==0) {comproEnroque=true;}
+		if (posicion.getFila()==1 && posicion.getColumna()=='e' ||
+			posicion.getFila()==8 && posicion.getColumna()=='e' ) {
+				if (totalMovimientos==0) {
+						comproEnroque=true;}else 
+							{throw new OperationNotSupportedException("ERROR: El rey ya se ha movido antes.");}
+		}throw new OperationNotSupportedException("ERROR: El rey no está en su posición inicial.");
 	}
 
 	@Override
 	public String toString() {
-		return "Rey [color=" + color + ", posicion=" + posicion + "]";
+		return "color="+ color+", posicion=("+ posicion + ")";
+		
 	}
 
 	

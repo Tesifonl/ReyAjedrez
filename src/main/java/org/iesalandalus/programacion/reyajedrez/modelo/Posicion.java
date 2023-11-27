@@ -14,7 +14,7 @@ public class Posicion {
 	
 	public void setFila(int fila) {	
 		if(fila<1||fila>8) {
-			throw new IllegalArgumentException("El valor permitido solo debe estar comprendido entre 1 y 8");
+			throw new IllegalArgumentException("ERROR: Fila no válida.");
 		}
 		this.fila = fila;
 	}
@@ -25,7 +25,7 @@ public class Posicion {
 	
 	public void setColumna(char columna) {
 		if((int)columna<97 ||(int)columna>104 ) {
-				throw new IllegalArgumentException("El valor permitido solo debe estar comprendido entre a y h");
+				throw new IllegalArgumentException("ERROR: Columna no válida.");
 		}
 		this.columna = columna;	
 	}
@@ -36,6 +36,9 @@ public class Posicion {
 	}
 
 	public Posicion (Posicion cop) {
+		if(cop==null) {
+			throw new NullPointerException("ERROR: No es posible copiar una posición nula.");
+		}
 		setFila(cop.getFila());
 		setColumna(cop.getColumna());
 	}
@@ -59,7 +62,7 @@ public class Posicion {
 	
 	@Override
 	public String toString() {
-		return "Posicion [fila=" + fila + ", columna=" + columna + "]";
+		return "fila=" + fila + ", columna=" + columna;
 	}
 		
 }

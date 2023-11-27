@@ -72,7 +72,7 @@ public class MainApp {
 			pasos=Entrada.entero();
 			
 			try {
-			rey.mover(direccionElegida, pasos);
+			rey.mover(direccionElegida);
 	        System.out.println("Movimiento realizado correctamente");
 	        System.out.println("-------------------------------");
 	        System.out.println("");
