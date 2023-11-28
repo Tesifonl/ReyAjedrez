@@ -63,7 +63,7 @@ public class MainApp {
 	public static void mover () throws OperationNotSupportedException {
 		
 	
-			int pasos;
+			int pasos=0;
 
 			Consola.mostrarMenuDirecciones();;
 			Direccion direccionElegida=Consola.elegirDireccion();/*INTERESANTE REVISAR COMO ASIGNAR UN ENUN
@@ -78,7 +78,7 @@ public class MainApp {
 	        System.out.println("");
 	        System.out.println("");
 			} catch (IllegalArgumentException e) {
-				throw new OperationNotSupportedException("Movimiento no válido: " + e.getMessage());
+				throw new IllegalArgumentException("Movimiento no válido: " + e.getMessage());
 			}
 		}
 	

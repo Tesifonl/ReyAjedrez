@@ -1,6 +1,6 @@
 package org.iesalandalus.programacion.reyajedrez.modelo;
 
-import javax.naming.OperationNotSupportedException;
+
 
 public class Rey {
 	
@@ -39,16 +39,21 @@ public class Rey {
 	}
 
 	public Rey(Color color){
-		setColor(color);
 		
-		if (color.equals(Color.BLANCO)) {
-		setPosicion(new Posicion(1,'e'));
+		if(color==null) {
+			throw new NullPointerException("ERROR: El color no puede ser nulo.");
+		}else 
+		
+			setColor(color);
+			
+			if (color.equals(Color.BLANCO)) {
+			setPosicion(new Posicion(1,'e'));
+			}else{setPosicion(new Posicion(8,'e'));}
 		}
-		setPosicion(new Posicion(8,'e'));
-	}
 	
 	
-	public void mover(Direccion direccion) throws OperationNotSupportedException{
+	
+	public void mover(Direccion direccion){
 		
 		
 		if (direccion==null) {
@@ -62,7 +67,7 @@ public class Rey {
 				posicion.setFila(f+1);
 				totalMovimientos++;
 				} catch (IllegalArgumentException e) {
-					throw new OperationNotSupportedException("Movimiento no válido: " + e.getMessage());
+				throw new IllegalArgumentException("La posición no es la esperada." + e.getMessage());
 				}
 			}
 			
@@ -78,8 +83,8 @@ public class Rey {
 				c2=c1+1;
 				posicion.setColumna((char)c2);
 				totalMovimientos++;
-			} catch (IllegalArgumentException e) {
-				throw new OperationNotSupportedException("Movimiento no válido: " + e.getMessage());
+			 	} catch (IllegalArgumentException e) {
+			 	throw new IllegalArgumentException("La posición no es la esperada." + e.getMessage());
 				}
 			}
 		
@@ -95,8 +100,8 @@ public class Rey {
 				c2=c1-1;
 				posicion.setColumna((char)c2);	
 				totalMovimientos++;
-			} catch (IllegalArgumentException e) {
-				throw new OperationNotSupportedException("Movimiento no válido: " + e.getMessage());
+			 	} catch (IllegalArgumentException e) {
+			 	throw new IllegalArgumentException("La posición no es la esperada." + e.getMessage());
 				}	 
 			}
 		
@@ -108,8 +113,8 @@ public class Rey {
 				f=posicion.getFila();
 				posicion.setFila(f-1);
 				totalMovimientos++;
-			} catch (IllegalArgumentException e) {
-				throw new OperationNotSupportedException("Movimiento no válido: " + e.getMessage());
+			 	} catch (IllegalArgumentException e) {
+			 	throw new IllegalArgumentException("La posición no es la esperada." + e.getMessage());
 				}
 			}
 		
@@ -126,8 +131,8 @@ public class Rey {
 				c2=c1+1;
 				posicion.setColumna((char)c2);
 				totalMovimientos++;
-			} catch (IllegalArgumentException e) {
-				throw new OperationNotSupportedException("Movimiento no válido: " + e.getMessage());
+			 	} catch (IllegalArgumentException e) {
+			 	throw new IllegalArgumentException("La posición no es la esperada." + e.getMessage());
 				}
 			}
 			
@@ -144,8 +149,8 @@ public class Rey {
 				c2=c1-1;
 				posicion.setColumna((char)c2);
 				totalMovimientos++;
-			} catch (IllegalArgumentException e) {
-				throw new OperationNotSupportedException("Movimiento no válido: " + e.getMessage());
+			 	} catch (IllegalArgumentException e) {
+			 	throw new IllegalArgumentException("La posición no es la esperada." + e.getMessage());
 				}
 			}
 		
@@ -159,8 +164,8 @@ public class Rey {
 				c2=c1+1;
 				posicion.setColumna((char)c2);
 				totalMovimientos++;
-			} catch (IllegalArgumentException e) {
-				throw new OperationNotSupportedException("Movimiento no válido: " + e.getMessage());
+			 	} catch (IllegalArgumentException e) {
+				throw new IllegalArgumentException("La posición no es la esperada." + e.getMessage());
 				}
 			}
 		
@@ -174,8 +179,8 @@ public class Rey {
 				c2=c1+1;
 				posicion.setColumna((char)c2);
 				totalMovimientos++;
-			} catch (IllegalArgumentException e) {
-				throw new OperationNotSupportedException("Movimiento no válido: " + e.getMessage());
+			 	} catch (IllegalArgumentException e) {
+				throw new IllegalArgumentException("La posición no es la esperada." + e.getMessage());
 				}
 			}
 		
@@ -186,33 +191,32 @@ public class Rey {
 					posicion.getFila()==8 && posicion.getColumna()=='e' ) {
 						if (totalMovimientos==0) {
 							posicion.setColumna('h');}else 
-									{throw new OperationNotSupportedException("ERROR: El rey ya se ha movido antes.");}
-				}throw new OperationNotSupportedException("ERROR: El rey no está en su posición inicial.");
+									{throw new IllegalArgumentException("ERROR: El rey ya se ha movido antes.");}
+				}throw new IllegalArgumentException("ERROR: El rey no está en su posición inicial.");
 		}
 		
 			
 			
 		if (direccion.equals(Direccion.ENROQUE_LARGO)) {
 			if (posicion.getFila()==1 && posicion.getColumna()=='e' ||
-					posicion.getFila()==8 && posicion.getColumna()=='e' ) {
+					posicion.getFila()==8 && posicion.getColumna()=='e'){
 						if (totalMovimientos==0) {
 							posicion.setColumna('a');}else 
-									{throw new OperationNotSupportedException("ERROR: El rey ya se ha movido antes.");}
-				}throw new OperationNotSupportedException("ERROR: El rey no está en su posición inicial.");
+									{throw new IllegalArgumentException("ERROR: El rey ya se ha movido antes.");}
+				}throw new IllegalArgumentException("ERROR: El rey no está en su posición inicial.");
 			}
 		}
 	}
 
 	
-	
-	private void comprobarEnroque() throws OperationNotSupportedException {
+	private boolean comprobarEnroque(){
 		boolean comproEnroque=false;
 		if (posicion.getFila()==1 && posicion.getColumna()=='e' ||
 			posicion.getFila()==8 && posicion.getColumna()=='e' ) {
 				if (totalMovimientos==0) {
 						comproEnroque=true;}else 
-							{throw new OperationNotSupportedException("ERROR: El rey ya se ha movido antes.");}
-		}throw new OperationNotSupportedException("ERROR: El rey no está en su posición inicial.");
+							{throw new IllegalArgumentException("ERROR: El rey ya se ha movido antes.");}
+		}throw new IllegalArgumentException("ERROR: El rey no está en su posición inicial.");
 	}
 
 	@Override
