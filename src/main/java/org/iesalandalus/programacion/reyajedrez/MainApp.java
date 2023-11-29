@@ -44,8 +44,7 @@ public class MainApp {
 	public static void crearReyColor() {
 		try {
 			String resumen;
-			Color colorElegido=Consola.elegirColor();/*INTERESANTE REVISAR COMO ASIGNAR UN ENUN
-			A UNA VARIABLE OBJETO PARA DESPUES UTILIZARLA*/
+			Color colorElegido=Consola.elegirColor();
 			rey=new Rey(colorElegido);
 	        System.out.println("Rey creado correctamente");
 	        System.out.println("-------------------------------");
@@ -66,19 +65,16 @@ public class MainApp {
 			int pasos=0;
 
 			Consola.mostrarMenuDirecciones();;
-			Direccion direccionElegida=Consola.elegirDireccion();/*INTERESANTE REVISAR COMO ASIGNAR UN ENUN
-			A UNA VARIABLE OBJETO PARA DESPUES UTILIZARLA*/
+			Direccion direccionElegida=Consola.elegirDireccion();
 			System.out.println("Introduce el numero de pasos a mover");
 			pasos=Entrada.entero();
 			
 			try {
 			rey.mover(direccionElegida);
 	        System.out.println("Movimiento realizado correctamente");
-	        System.out.println("-------------------------------");
-	        System.out.println("");
-	        System.out.println("");
-			} catch (IllegalArgumentException e) {
-				throw new IllegalArgumentException("Movimiento no válido: " + e.getMessage());
+	        System.out.println("Posicion= "+rey.getPosicion());
+			} catch (OperationNotSupportedException e) {
+				System.out.println(e.getMessage());
 			}
 		}
 	

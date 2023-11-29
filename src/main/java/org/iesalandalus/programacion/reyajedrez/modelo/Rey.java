@@ -1,6 +1,6 @@
 package org.iesalandalus.programacion.reyajedrez.modelo;
 
-
+import javax.naming.OperationNotSupportedException;
 
 public class Rey {
 	
@@ -53,7 +53,7 @@ public class Rey {
 	
 	
 	
-	public void mover(Direccion direccion){
+	public void mover(Direccion direccion) throws OperationNotSupportedException{
 		
 		
 		if (direccion==null) {
@@ -61,163 +61,184 @@ public class Rey {
 		}else {
 		
 		if (direccion.equals(Direccion.NORTE)) {
-			try {
 				int f;
 				f=posicion.getFila();
+				if(f<8) {
 				posicion.setFila(f+1);
 				totalMovimientos++;
-				} catch (IllegalArgumentException e) {
-				throw new IllegalArgumentException("La posición no es la esperada." + e.getMessage());
-				}
+					}else{
+						posicion.setFila(f);
+						throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
+						}
 			}
 			
 		if (direccion.equals(Direccion.NORESTE)) {
-			 try {	
 				int f;
 				char c1;
 				int c2=0;
 					
 				f=posicion.getFila();
-				posicion.setFila(f+1);	
 				c1=posicion.getColumna();
+				if (f<8 && c1<104) {
+				posicion.setFila(f+1);		
 				c2=c1+1;
 				posicion.setColumna((char)c2);
 				totalMovimientos++;
-			 	} catch (IllegalArgumentException e) {
-			 	throw new IllegalArgumentException("La posición no es la esperada." + e.getMessage());
-				}
+			 		} else{
+			 			posicion.setFila(f);		
+			 			posicion.setColumna((char)c1);
+			 			throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
+			 		}
 			}
 		
 		if (direccion.equals(Direccion.NOROESTE)) {
-			 try {
-				int f;
-				char c1;
-				int c2=0;
-					
-				f=posicion.getFila();
-				posicion.setFila(f+1);
-				c1=posicion.getColumna();
-				c2=c1-1;
-				posicion.setColumna((char)c2);	
-				totalMovimientos++;
-			 	} catch (IllegalArgumentException e) {
-			 	throw new IllegalArgumentException("La posición no es la esperada." + e.getMessage());
-				}	 
+		 	int f;
+			char c1;
+			int c2=0;
+				
+			f=posicion.getFila();
+			c1=posicion.getColumna();
+			if (f<8 && c1>97) {
+			posicion.setFila(f+1);		
+			c2=c1-1;
+			posicion.setColumna((char)c2);
+			totalMovimientos++;
+		 		} else{
+		 			posicion.setFila(f);		
+		 			posicion.setColumna((char)c1);
+		 			throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
+		 		}
 			}
 		
 		
 		if (direccion.equals(Direccion.SUR)) {
-			 try {
-				int f;
-					
-				f=posicion.getFila();
-				posicion.setFila(f-1);
-				totalMovimientos++;
-			 	} catch (IllegalArgumentException e) {
-			 	throw new IllegalArgumentException("La posición no es la esperada." + e.getMessage());
-				}
+			int f;
+			f=posicion.getFila();
+			if(f>1) {
+			posicion.setFila(f-1);
+			totalMovimientos++;
+				}else{
+					posicion.setFila(f);
+					throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
+					}
 			}
 		
 			
 		if (direccion.equals(Direccion.SURESTE)) {
-			 try {
-				int f;
-				char c1;
-				int c2=0;
-					
-				f=posicion.getFila();
-				posicion.setFila(f-1);	
-				c1=posicion.getColumna();
-				c2=c1+1;
-				posicion.setColumna((char)c2);
-				totalMovimientos++;
-			 	} catch (IllegalArgumentException e) {
-			 	throw new IllegalArgumentException("La posición no es la esperada." + e.getMessage());
-				}
+			int f;
+			char c1;
+			int c2=0;
+				
+			f=posicion.getFila();
+			c1=posicion.getColumna();
+			if (f>1 && c1<104) {
+			posicion.setFila(f-1);		
+			c2=c1+1;
+			posicion.setColumna((char)c2);
+			totalMovimientos++;
+		 		} else{
+		 			posicion.setFila(f);		
+		 			posicion.setColumna((char)c1);
+		 			throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
+		 		}
 			}
 			
 		
 		if (direccion.equals(Direccion.SUROESTE)) {
-			 try {
-				int f;
-				char c1;
-				int c2=0;
-					
-				f=posicion.getFila();
-				posicion.setFila(f-1);		
-				c1=posicion.getColumna();
-				c2=c1-1;
-				posicion.setColumna((char)c2);
-				totalMovimientos++;
-			 	} catch (IllegalArgumentException e) {
-			 	throw new IllegalArgumentException("La posición no es la esperada." + e.getMessage());
-				}
+			int f;
+			char c1;
+			int c2=0;
+				
+			f=posicion.getFila();
+			c1=posicion.getColumna();
+			if (f>1 && c1>97) {
+			posicion.setFila(f-1);		
+			c2=c1-1;
+			posicion.setColumna((char)c2);
+			totalMovimientos++;
+		 		} else{
+		 			posicion.setFila(f);		
+		 			posicion.setColumna((char)c1);
+		 			throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
+		 		}
 			}
 		
 			
 		if (direccion.equals(Direccion.ESTE)) {
-			 try {
 				char c1;
 				int c2=0;
 	
 				c1=posicion.getColumna();
+				if(c1<104) {
 				c2=c1+1;
 				posicion.setColumna((char)c2);
 				totalMovimientos++;
-			 	} catch (IllegalArgumentException e) {
-				throw new IllegalArgumentException("La posición no es la esperada." + e.getMessage());
-				}
+			 	} else{	
+		 			posicion.setColumna((char)c1);
+		 			throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
+		 		}
 			}
 		
 			
 		if (direccion.equals(Direccion.OESTE)) {
-			 try {
-				char c1;
-				int c2=0;
-	
-				c1=posicion.getColumna();
-				c2=c1+1;
-				posicion.setColumna((char)c2);
-				totalMovimientos++;
-			 	} catch (IllegalArgumentException e) {
-				throw new IllegalArgumentException("La posición no es la esperada." + e.getMessage());
-				}
+			char c1;
+			int c2=0;
+
+			c1=posicion.getColumna();
+			if(c1>97) {
+			c2=c1-1;
+			posicion.setColumna((char)c2);
+			totalMovimientos++;
+		 	} else{	
+	 			posicion.setColumna((char)c1);
+	 			throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
+	 			}
 			}
 		
-			
 		if (direccion.equals(Direccion.ENROQUE_CORTO)) {
+			int f;
+			char c1;
+			int c2;
+			f=posicion.getFila();
+			c1=posicion.getColumna();
+			c2=c1+0;
 			
-			if (posicion.getFila()==1 && posicion.getColumna()=='e' ||
-					posicion.getFila()==8 && posicion.getColumna()=='e' ) {
-						if (totalMovimientos==0) {
-							posicion.setColumna('h');}else 
-									{throw new IllegalArgumentException("ERROR: El rey ya se ha movido antes.");}
-				}throw new IllegalArgumentException("ERROR: El rey no está en su posición inicial.");
-		}
+			if (totalMovimientos!=0){
+				throw new OperationNotSupportedException("ERROR: El rey no está en su posición inicial.");
+				}else if((f==1 && c2==101) ||(f==8 && c2==101)){
+					posicion.setColumna((char)103);}else {
+						throw new OperationNotSupportedException("ERROR: El rey ya se ha movido antes.");
+					}
+			}
 		
-			
-			
 		if (direccion.equals(Direccion.ENROQUE_LARGO)) {
-			if (posicion.getFila()==1 && posicion.getColumna()=='e' ||
-					posicion.getFila()==8 && posicion.getColumna()=='e'){
-						if (totalMovimientos==0) {
-							posicion.setColumna('a');}else 
-									{throw new IllegalArgumentException("ERROR: El rey ya se ha movido antes.");}
-				}throw new IllegalArgumentException("ERROR: El rey no está en su posición inicial.");
+			int f;
+			char c1;
+			int c2;
+			f=posicion.getFila();
+			c1=posicion.getColumna();
+			c2=c1+0;
+			
+			if (totalMovimientos!=0){
+				throw new OperationNotSupportedException("ERROR: El rey no está en su posición inicial.");
+				}else if((f==1 && c2==101) ||(f==8 && c2==101)){
+					posicion.setColumna((char)99);}else {
+						throw new OperationNotSupportedException("ERROR: El rey ya se ha movido antes.");
+					}
 			}
 		}
 	}
-
+			
 	
-	private boolean comprobarEnroque(){
+	/*private boolean comprobarEnroque(){
 		boolean comproEnroque=false;
-		if (posicion.getFila()==1 && posicion.getColumna()=='e' ||
-			posicion.getFila()==8 && posicion.getColumna()=='e' ) {
+		if ((posicion.getFila()==1 && posicion.getColumna()=='e') ||
+			(posicion.getFila()==8 && posicion.getColumna()=='e' )) {
 				if (totalMovimientos==0) {
 						comproEnroque=true;}else 
 							{throw new IllegalArgumentException("ERROR: El rey ya se ha movido antes.");}
 		}throw new IllegalArgumentException("ERROR: El rey no está en su posición inicial.");
-	}
+	}*/
 
 	@Override
 	public String toString() {
