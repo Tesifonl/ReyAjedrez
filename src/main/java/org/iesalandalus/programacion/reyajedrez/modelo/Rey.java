@@ -203,12 +203,12 @@ public class Rey {
 			c1=posicion.getColumna();
 			c2=c1+0;
 			
-			if (totalMovimientos!=0){
-				throw new OperationNotSupportedException("ERROR: El rey ya se ha movido antes.");
-				}else if((f==1 && c2==101) ||(f==8 && c2==101)){
+			if ((f!=1 && f!=8) || (c2!=101)){
+				throw new OperationNotSupportedException("ERROR: El rey no está en su posición inicial.");
+				}else if(totalMovimientos==0){
 					posicion.setColumna((char)103);
 					totalMovimientos=totalMovimientos+1;}else {
-						throw new OperationNotSupportedException("ERROR: El rey no está en su posición inicial.");
+						throw new OperationNotSupportedException("ERROR: El rey ya se ha movido antes.");
 					}
 			}
 		
@@ -220,17 +220,19 @@ public class Rey {
 			c1=posicion.getColumna();
 			c2=c1+0;
 			
-			if (totalMovimientos!=0){
-				throw new OperationNotSupportedException("ERROR: El rey ya se ha movido antes.");
-				}else if((f==1 && c2==101) ||(f==8 && c2==101)){
+			if ((f!=1 && f!=8) || (c2!=101)){
+				throw new OperationNotSupportedException("ERROR: El rey no está en su posición inicial.");
+				}else if(totalMovimientos==0){
 					posicion.setColumna((char)99);
 					totalMovimientos=totalMovimientos+1;}else {
-						throw new OperationNotSupportedException("ERROR: El rey no está en su posición inicial.");
+						throw new OperationNotSupportedException("ERROR: El rey ya se ha movido antes.");
 					}
 			}
+		
 		}
-	}
+		}
 			
+
 	
 	/*private boolean comprobarEnroque(){
 		boolean comproEnroque=false;
