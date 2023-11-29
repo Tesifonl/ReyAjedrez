@@ -65,7 +65,7 @@ public class Rey {
 				f=posicion.getFila();
 				if(f<8) {
 				posicion.setFila(f+1);
-				totalMovimientos++;
+				totalMovimientos=totalMovimientos+1;
 					}else{
 						posicion.setFila(f);
 						throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
@@ -83,7 +83,7 @@ public class Rey {
 				posicion.setFila(f+1);		
 				c2=c1+1;
 				posicion.setColumna((char)c2);
-				totalMovimientos++;
+				totalMovimientos=totalMovimientos+1;
 			 		} else{
 			 			posicion.setFila(f);		
 			 			posicion.setColumna((char)c1);
@@ -102,7 +102,7 @@ public class Rey {
 			posicion.setFila(f+1);		
 			c2=c1-1;
 			posicion.setColumna((char)c2);
-			totalMovimientos++;
+			totalMovimientos=totalMovimientos+1;
 		 		} else{
 		 			posicion.setFila(f);		
 		 			posicion.setColumna((char)c1);
@@ -116,7 +116,7 @@ public class Rey {
 			f=posicion.getFila();
 			if(f>1) {
 			posicion.setFila(f-1);
-			totalMovimientos++;
+			totalMovimientos=totalMovimientos+1;
 				}else{
 					posicion.setFila(f);
 					throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
@@ -135,7 +135,7 @@ public class Rey {
 			posicion.setFila(f-1);		
 			c2=c1+1;
 			posicion.setColumna((char)c2);
-			totalMovimientos++;
+			totalMovimientos=totalMovimientos+1;
 		 		} else{
 		 			posicion.setFila(f);		
 		 			posicion.setColumna((char)c1);
@@ -155,7 +155,7 @@ public class Rey {
 			posicion.setFila(f-1);		
 			c2=c1-1;
 			posicion.setColumna((char)c2);
-			totalMovimientos++;
+			totalMovimientos=totalMovimientos+1;
 		 		} else{
 		 			posicion.setFila(f);		
 		 			posicion.setColumna((char)c1);
@@ -172,7 +172,7 @@ public class Rey {
 				if(c1<104) {
 				c2=c1+1;
 				posicion.setColumna((char)c2);
-				totalMovimientos++;
+				totalMovimientos=totalMovimientos+1;
 			 	} else{	
 		 			posicion.setColumna((char)c1);
 		 			throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
@@ -188,7 +188,7 @@ public class Rey {
 			if(c1>97) {
 			c2=c1-1;
 			posicion.setColumna((char)c2);
-			totalMovimientos++;
+			totalMovimientos=totalMovimientos+1;
 		 	} else{	
 	 			posicion.setColumna((char)c1);
 	 			throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
@@ -204,10 +204,11 @@ public class Rey {
 			c2=c1+0;
 			
 			if (totalMovimientos!=0){
-				throw new OperationNotSupportedException("ERROR: El rey no está en su posición inicial.");
+				throw new OperationNotSupportedException("ERROR: El rey ya se ha movido antes.");
 				}else if((f==1 && c2==101) ||(f==8 && c2==101)){
-					posicion.setColumna((char)103);}else {
-						throw new OperationNotSupportedException("ERROR: El rey ya se ha movido antes.");
+					posicion.setColumna((char)103);
+					totalMovimientos=totalMovimientos+1;}else {
+						throw new OperationNotSupportedException("ERROR: El rey no está en su posición inicial.");
 					}
 			}
 		
@@ -220,10 +221,11 @@ public class Rey {
 			c2=c1+0;
 			
 			if (totalMovimientos!=0){
-				throw new OperationNotSupportedException("ERROR: El rey no está en su posición inicial.");
+				throw new OperationNotSupportedException("ERROR: El rey ya se ha movido antes.");
 				}else if((f==1 && c2==101) ||(f==8 && c2==101)){
-					posicion.setColumna((char)99);}else {
-						throw new OperationNotSupportedException("ERROR: El rey ya se ha movido antes.");
+					posicion.setColumna((char)99);
+					totalMovimientos=totalMovimientos+1;}else {
+						throw new OperationNotSupportedException("ERROR: El rey no está en su posición inicial.");
 					}
 			}
 		}
