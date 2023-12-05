@@ -15,7 +15,7 @@ public class MainApp {
 	private static Direccion direccion;
 
 	
-	public static void ejecutarOpcion(int opcion) throws OperationNotSupportedException {	
+	public static void ejecutarOpcion(int opcion) {	
 
     	switch (opcion) {
 		
@@ -59,15 +59,13 @@ public class MainApp {
         }
 	}
 	
-	public static void mover () throws OperationNotSupportedException {
+	public static void mover () {
 		
 	
-			int pasos=0;
 
 			Consola.mostrarMenuDirecciones();;
 			Direccion direccionElegida=Consola.elegirDireccion();
-			System.out.println("Introduce el numero de pasos a mover");
-			pasos=Entrada.entero();
+
 			
 			try {
 			rey.mover(direccionElegida);
@@ -87,7 +85,7 @@ public class MainApp {
 		}
 
 
-    public static void main(String[] args) throws OperationNotSupportedException {
+    public static void main(String[] args) {
     	
     	int opcion;
     	do { 
