@@ -23,14 +23,17 @@ public class Rey {
 	}
 	
 	public Posicion getPosicion() {
+		
 		return posicion;
+		/*return new Posicion(posicion);/*utilizo el constructor copia en el que introduzco un objeto*/
 	}
 	
 	public void setPosicion(Posicion posicion) {
 		if(posicion==null) {
 			throw new NullPointerException("ERROR: No se puede establecer una posicion vacia");
 		}
-		this.posicion = posicion;
+		this.posicion=posicion;
+		/*posicion=new Posicion (posicion);/*utilizo el constructor copia en el que introduzco un objeto*/
 	}
 	
 	public Rey(){
